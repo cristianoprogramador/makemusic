@@ -67,17 +67,4 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
-
-  # Expands the lines which load the assets
-config.assets.debug = true
-
-# Opt to require and not use digests for assets URLs
-config.assets.digest = false
-
-# Don't fallback to assets pipeline if a precompiled asset is missed
-config.assets.compile = true
-
-# Suppress logger output for asset requests
-config.assets.quiet = true
-
 end
