@@ -2,9 +2,9 @@
   <div class="container mx-auto flex flex-col justify-center">
     <div class="flex flex-row items-center justify-between pb-3">
       <!-- Logo -->
-      <div class="cursor-pointer hidden md:flex">
+      <%= link_to root_path, class: "cursor-pointer hidden md:flex" do %>
         <img src="/icons/logoHeader.svg" alt="Logo" class="h-12">
-      </div>
+      <% end %>
 
       <!-- Search Bar -->
       <div>
@@ -35,30 +35,50 @@
       </div>
     </div>
     <div class="flex flex-row justify-center items-center gap-12 pb-3 hidden md:flex">
-      <div class="cursor-pointer flex flex-row gap-2 items-center justify-center">
-        <img src="/icons/kits.svg" alt="Logo" class="h-8">
-        <p>Kits</p>
+      <div class="flex flex-row justify-center items-center gap-12 pb-1 hidden md:flex">
+        <%= link_to root_path(category: 'Kits') do %>
+          <div class="cursor-pointer flex flex-row gap-2 items-center justify-center">
+            <img src="/icons/kits.svg" alt="Logo" class="h-8">
+            <p>Kits</p>
+          </div>
+        <% end %>
+
+        <%= link_to root_path(category: 'Cordas') do %>
+          <div class="cursor-pointer flex flex-row gap-2 items-center justify-center">
+            <img src="/icons/strings.svg" alt="Logo" class="h-8">
+            <p>Cordas</p>
+          </div>
+        <% end %>
+
+        <%= link_to root_path(category: 'Teclas') do %>
+          <div class="cursor-pointer flex flex-row gap-2 items-center justify-center">
+            <img src="/icons/keys.svg" alt="Logo" class="h-8">
+            <p>Teclas</p>
+          </div>
+        <% end %>
+
+        <%= link_to root_path(category: 'Áudio') do %>
+          <div class="cursor-pointer flex flex-row gap-2 items-center justify-center">
+            <img src="/icons/audio.svg" alt="Logo" class="h-8">
+            <p>Áudio</p>
+          </div>
+        <% end %>
+
+        <%= link_to root_path(category: 'Bateria') do %>
+          <div class="cursor-pointer flex flex-row gap-2 items-center justify-center">
+            <img src="/icons/drums.svg" alt="Logo" class="h-8">
+            <p>Bateria</p>
+          </div>
+        <% end %>
+
+        <%= link_to root_path(category: 'Sopro') do %>
+          <div class="cursor-pointer flex flex-row gap-2 items-center justify-center">
+            <img src="/icons/sopro.svg" alt="Logo" class="h-8">
+            <p>Sopro</p>
+          </div>
+        <% end %>
       </div>
-      <div class="cursor-pointer flex flex-row gap-2  items-center justify-center">
-        <img src="/icons/strings.svg" alt="Logo" class="h-8">
-        <p>Cordas</p>
-      </div>
-      <div class="cursor-pointer flex flex-row gap-2  items-center justify-center">
-        <img src="/icons/keys.svg" alt="Logo" class="h-8">
-        <p>Teckas</p>
-      </div>
-      <div class="cursor-pointer flex flex-row gap-2  items-center justify-center">
-        <img src="/icons/audio.svg" alt="Logo" class="h-8">
-        <p>Áudio</p>
-      </div>
-      <div class="cursor-pointer flex flex-row gap-2  items-center justify-center">
-        <img src="/icons/drums.svg" alt="Logo" class="h-8">
-        <p>Bateria</p>
-      </div>
-      <div class="cursor-pointer flex flex-row gap-2  items-center justify-center">
-        <img src="/icons/sopro.svg" alt="Logo" class="h-8">
-        <p>Sopro</p>
-      </div>
+
     </div>
   </div>
 </header>

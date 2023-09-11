@@ -1,7 +1,12 @@
 class HomeController < ApplicationController
 
   def index
-    @products = Product.all
+    if params[:category]
+      @products = Product.where(category: params[:category])
+    else
+      @products = Product.all
+    end
   end
+
 
 end
