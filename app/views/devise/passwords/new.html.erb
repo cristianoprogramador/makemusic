@@ -1,0 +1,21 @@
+<div class="flex flex-col items-center justify-center bg-[#E1E1E1] flex-grow">
+
+  <h2 class="mb-6 text-2xl text-center">Esqueceu sua senha?</h2>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="mb-4">
+      <%= f.label :email, class: "block text-sm font-bold mb-2" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div>
+      <%= f.submit "Enviar instruções de redefinição de senha", class: "w-full bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+  <% end %>
+
+  <div class="mt-4 text-center">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
