@@ -29,9 +29,14 @@
         </div>
 
         <!-- Shopping Cart SVG -->
-        <div class="cursor-pointer">
-          <img src="/icons/cart.svg" alt="Logo" class="h-8">
-        </div>
+        <% if current_user %>
+          <%= link_to cart_path(current_user.cart) do %>
+            <div class="cursor-pointer">
+              <img src="/icons/cart.svg" alt="Logo" class="h-8">
+            </div>
+          <% end %>
+        <% end %>
+
       </div>
     </div>
     <div class="flex flex-row justify-center items-center gap-12 pb-3 hidden md:flex">
