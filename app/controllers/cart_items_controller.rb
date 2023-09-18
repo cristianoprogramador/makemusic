@@ -1,6 +1,7 @@
 class CartItemsController < ApplicationController
   def create
     cart = current_cart
+    puts "------- Current Cart ID: #{cart.id}" # Imprimir o ID do carrinho para diagnóstico
     @cart_item = cart.cart_items.new(cart_item_params)
 
     if @cart_item.save
@@ -9,6 +10,7 @@ class CartItemsController < ApplicationController
       redirect_to products_path, alert: "Erro ao adicionar ao carrinho."
     end
   end
+
 
   def update
     @cart_item = CartItem.find(params[:id])
@@ -33,12 +35,13 @@ class CartItemsController < ApplicationController
   end
 
   def current_cart
-    if current_user
-      current_user.cart
-    else
-      retrieve_cart_from_session
+    cart = current_or_guest_user.cart
+    if cart.nil?
+      cart = current_or_guest_user.create_cart
     end
+    cart
   end
+
 
   def retrieve_cart_from_session
     cart = Cart.find_by(id: session[:cart_id])

@@ -33,12 +33,10 @@
         </div>
 
         <!-- Shopping Cart SVG -->
-        <% if current_user && current_user.cart %>
-          <%= link_to cart_path(current_user.cart) do %>
-            <div class="cursor-pointer">
-              <img src="/icons/cart.svg" alt="Logo" class="h-8">
-            </div>
-          <% end %>
+        <%= link_to cart_path(current_cart) do %>
+          <div class="cursor-pointer">
+            <img src="/icons/cart.svg" alt="Logo" class="h-8">
+          </div>
         <% end %>
 
       </div>
