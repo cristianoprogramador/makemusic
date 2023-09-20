@@ -8,4 +8,9 @@ class HomeController < ApplicationController
     end
   end
 
+  def search
+    @products = Product.where("name ILIKE ?", "%#{params[:query]}%")
+    render :index
+  end
+
 end

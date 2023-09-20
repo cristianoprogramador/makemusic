@@ -8,7 +8,11 @@
 
       <!-- Search Bar -->
       <div>
-        <input type="text" placeholder="Pesquisar..." class="w-full md:w-96 p-2 rounded-md placeholder:text-black">
+        <%= form_with url: search_path, method: :get, local: true, class: "w-full md:w-96" do %>
+          <%= text_field_tag :query, params[:query], placeholder: "Pesquisar...", class: "p-2 rounded-md placeholder:text-black w-full text-black" %>
+          <%= submit_tag "Buscar", class: "hidden" %>
+        <% end %>
+
       </div>
 
       <!-- User Info and Cart -->
@@ -17,7 +21,7 @@
         <% if user_signed_in? %>
           <div class="text-white text-sm mr-4 flex flex-col items-center">
             <p>Bem Vindo,</p>
-            <p><%= current_user.email %></p>
+            <p><%= current_user.name %></p>
             <%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
 
           </div>
@@ -28,9 +32,13 @@
         <% end %>
 
         <!-- Avatar -->
-        <div class="mr-4 cursor-pointer">
-          <img src="https://github.com/cristianoprogramador.png" alt="Avatar" class="w-14 h-14 rounded-full">
-        </div>
+        <% if user_signed_in? %>
+          <%= link_to user_profile_path do %>
+            <div class="mr-4 cursor-pointer">
+              <img src="/icons/user_avatar.svg" alt="Avatar" class="w-9 h-9">
+            </div>
+          <% end %>
+        <% end %>
 
         <!-- Shopping Cart SVG -->
         <%= link_to cart_path(current_cart) do %>
@@ -41,8 +49,8 @@
 
       </div>
     </div>
-    <div class="flex flex-row justify-center items-center gap-12 pb-3 hidden md:flex">
-      <div class="flex flex-row justify-center items-center gap-12 pb-1 hidden md:flex">
+    <div class=" flex-row justify-center items-center gap-12 pb-3 hidden md:flex">
+      <div class=" flex-row justify-center items-center gap-12 pb-1 hidden md:flex">
         <%= link_to root_path(category: 'Kits') do %>
           <div class="cursor-pointer flex flex-row gap-2 items-center justify-center">
             <img src="/icons/kits.svg" alt="Logo" class="h-8">

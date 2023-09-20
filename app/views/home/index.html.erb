@@ -1,7 +1,16 @@
 <div class="bg-[#E1E1E1] flex-grow">
   <div class="flex flex-col items-center justify-center">
-    <p class="text-4xl mb-6 mt-6"><%= params[:category].presence || "Destaques" %></p>
-
+    <p class="text-4xl mb-6 mt-6">
+      <% if params[:query].present? %>
+        <% if @products.any? %>
+          <%= @products.count %> <%= 'resultado'.pluralize(@products.count) %> para “<%= params[:query] %>”
+        <% else %>
+          Infelizmente, não encontramos resultados para “<%= params[:query] %>”
+        <% end %>
+      <% else %>
+        <%= params[:category].presence || "Destaques" %>
+      <% end %>
+    </p>
     <!-- Container flex para os produtos -->
     <div class="flex flex-wrap justify-center gap-7 w-full max-w-[1450px] mb-6">
       <% @products.each do |product| %>

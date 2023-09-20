@@ -16,6 +16,12 @@
   <body class="flex flex-col min-h-screen bg-[#D4D4D4]">
     <%= render 'layouts/header' %>
 
+    <% flash.each do |name, msg| %>
+      <div class="bg-red-500 text-white p-4 text-center my-4" style="animation: fadeOut 3s forwards">
+        <%= msg %>
+      </div>
+    <% end %>
+
     <main class="flex flex-grow h-full">
       <%= yield %>
     </main>

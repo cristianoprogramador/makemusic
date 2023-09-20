@@ -1,5 +1,12 @@
 class ApplicationController < ActionController::Base
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :avatar_url])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :avatar_url])
+  end
 
   def current_or_guest_user
     if current_user
@@ -29,6 +36,7 @@ class ApplicationController < ActionController::Base
   def create_guest_user
     user = User.create!(
       guest: true,
+      name: "Visitante",
       email: "guest_#{Time.now.to_i}#{rand(100)}@example.com",
       password: "guest_password",
       password_confirmation: "guest_password"

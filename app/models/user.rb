@@ -5,6 +5,10 @@ class User < ApplicationRecord
   has_one :cart, dependent: :destroy
   after_create :create_cart
 
+  validates :name, presence: true
+  validates_format_of :avatar_url, :with => /\A(|(http|https):\/\/\S+)\z/, :message => "must be blank or begin with http:// or https://", allow_blank: true
+
+
   # Sobrescrevendo o método de validação de senha do Devise
   def password_required?
     super && !guest?
