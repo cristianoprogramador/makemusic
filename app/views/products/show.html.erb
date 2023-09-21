@@ -13,10 +13,12 @@
       <%= form_for CartItem.new, url: cart_items_path do |f| %>
         <div>
           <%= f.label :quantity, "Quantidade:" %>
-          <%= f.number_field :quantity, min: 1, value: 1, class: "p-1 rounded border" %>
+          <%= f.number_field :quantity, min: 1, value: 1, class: "p-1 rounded border w-12 bg-gray-300 text-center items-center" %>
         </div>
-        <%= f.hidden_field :product_id, value: @product.id %>
-        <%= f.submit "Adicionar ao Carrinho", class: "mt-4 bg-blue-500 text-white p-2 rounded" %>
+        <div class="flex justify-center items-center">
+          <%= f.hidden_field :product_id, value: @product.id %>
+          <%= f.submit "Adicionar ao Carrinho", class: "mt-4 bg-blue-500 hover:bg-blue-700 text-white p-2 rounded text-center" %>
+        </div>
       <% end %>
     </div>
   </div>

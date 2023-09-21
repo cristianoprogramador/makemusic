@@ -14,9 +14,10 @@
  *= require_self
  */
 
- @keyframes fadeOut {
+/* Em seu arquivo CSS */
+@keyframes fadeOut {
   to {
     opacity: 0;
-    visibility: hidden;
   }
 }
+

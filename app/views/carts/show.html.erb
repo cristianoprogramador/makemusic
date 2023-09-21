@@ -4,22 +4,40 @@
   <% if @cart_items.empty? %>
     <p>Seu carrinho está vazio!</p>
   <% else %>
-    <ul>
-      <% @cart_items.each do |item| %>
-        <li class="flex justify-between w-full max-w-4xl p-4 border-b">
-          <div>
-            <strong><%= item.product.name %></strong>
-            (<%= item.quantity %>)
-          </div>
-          <div>
-            R$: <%= item.product.price * item.quantity %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
+    <div class="flex flex-row space-x-8">
+      <!-- Lista de Produtos -->
+      <div class="flex-grow">
+        <ul class="w-full max-w-4xl">
+          <% @cart_items.each do |item| %>
+            <li class="flex justify-between p-4 border-b">
+              <div>
+                <strong><%= item.product.name %></strong>
+                (<%= item.quantity %>)
+              </div>
+              <div>
+                R$: <%= item.product.price * item.quantity %>
+              </div>
 
-    <div class="mt-6">
-      Total: R$: <%= @cart_items.sum { |item| item.product.price * item.quantity } %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <!-- Resumo da Compra -->
+      <div class="flex flex-col bg-[#D4D4D4] justify-center items-center text-center rounded-lg w-96">
+        <p class="pt-5 pb-5 text-lg border-b border-[#929292] w-full">Resumo da Compra</p>
+        <div class="flex flex-row justify-around w-full p-2">
+          <p>Valor dos Produtos</p>
+          <p><%= @cart_items.sum { |item| item.product.price * item.quantity } %></p>
+        </div>
+        <div class="flex flex-row justify-around w-full p-2">
+          <p>Valor do Frete</p>
+          <p>R$ 40,00</p>
+        </div>
+        <div class="p-4">
+          <p>Total da Compra: R$: <%= @cart_items.sum { |item| item.product.price * item.quantity } + 40 %></p>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

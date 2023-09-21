@@ -17,7 +17,7 @@
     <%= render 'layouts/header' %>
 
     <% flash.each do |name, msg| %>
-      <div class="bg-red-500 text-white p-4 text-center my-4" style="animation: fadeOut 3s forwards">
+      <div class="fixed top-14 left-1/2 transform -translate-x-1/2 mt-4 p-4 bg-red-500 text-white rounded shadow-lg z-50" style="animation: fadeOut 5s forwards">
         <%= msg %>
       </div>
     <% end %>
