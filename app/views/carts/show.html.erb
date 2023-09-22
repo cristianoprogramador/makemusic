@@ -9,29 +9,37 @@
       <div class="flex-grow">
         <ul class="w-full max-w-4xl">
           <% @cart_items.each do |item| %>
-            <li class="flex justify-start p-4 border-b bg-[#D4D4D4] rounded-lg">
+            <li class="flex justify-start p-4 border-b-2 bg-[#D4D4D4] rounded-lg">
               <div>
                 <div>
                   <%= image_tag item.product.image_url, alt: item.product.name, class: "w-[200px] h-[200px] object-contain p-2" %>
                 </div>
 
               </div>
-              <div class="flex flex-col justify-around max-w-xs overflow-auto">
+              <div class="flex flex-col justify-around max-w-xs overflow-auto w-full">
                 <div>
                   <strong><%= item.product.name %></strong>
-                  (<%= item.quantity %>)
                 </div>
+
                 <div class="pt-2 pb-2">
-                  <p><%= item.product.description %></p>
+                  <p class="text-sm text-gray-600"><%= item.product.description %></p>
                 </div>
-                <div>
+                <div class="flex flex-row justify-around items-center">
+                  <div class="flex items-center">
+                    <%= form_with url: decrement_cart_item_path(item), method: :post, class: "mr-2" do %>
+                      <button type="submit" class="bg-red-500 text-white rounded p-1"><i class="fa fa-minus"></i></button>
+                    <% end %>
+                    <span class="mx-2"><%= item.quantity %></span>
+                    <%= form_with url: increment_cart_item_path(item), method: :post, class: "ml-2" do %>
+                      <button type="submit" class="bg-green-500 text-white rounded p-1"><i class="fa fa-plus"></i></button>
+                    <% end %>
+                  </div>
                   R$: <%= number_to_currency(item.product.price * item.quantity, unit: "", separator: ",", delimiter: ".") %>
                   <%= link_to cart_item_path(item), data: { turbo_method: :delete, turbo_confirm: 'Tem certeza que deseja remover este item?' } do %>
-                    <i class="fa fa-trash text-red-500 hover:text-red-700 cursor-pointer ml-2"></i>
+                    <i class="fa fa-trash fa-lg text-red-500 hover:text-red-700 cursor-pointer ml-2"></i>
                   </div>
                 <% end %>
               </div>
-
             </li>
           <% end %>
         </ul>

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :products, only: [:show]
 
   resources :carts, only: [:show]
-  resources :cart_items, only: [:create, :update, :destroy]
-
+  resources :cart_items, only: [:create, :update, :destroy] do
+    post 'increment', on: :member
+    post 'decrement', on: :member
+  end
 end
