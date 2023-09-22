@@ -84,6 +84,9 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.12.0)
+    ffi (1.15.5)
+    font-awesome-sass (6.4.2)
+      sassc (~> 2.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
@@ -165,6 +168,8 @@ GEM
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -203,6 +208,7 @@ DEPENDENCIES
   bootsnap
   debug
   devise (~> 4.9)
+  font-awesome-sass (~> 6.4.2)
   importmap-rails
   jbuilder
   pg (~> 1.1)

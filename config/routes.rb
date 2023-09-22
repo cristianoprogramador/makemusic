@@ -5,13 +5,10 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#show', as: 'user_profile'
   get 'search', to: 'home#search', as: 'search'
 
-
   root 'home#index'
   resources :products, only: [:show]
 
   resources :carts, only: [:show]
   resources :cart_items, only: [:create, :update, :destroy]
-
-
 
 end

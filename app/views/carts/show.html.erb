@@ -1,21 +1,35 @@
 <div class="flex flex-col items-center justify-center bg-[#E1E1E1] flex-grow">
-  <h1 class="text-3xl mb-4">Seu Carrinho</h1>
+  <h1 class="text-3xl mt-4 mb-4">Seu Carrinho</h1>
 
   <% if @cart_items.empty? %>
     <p>Seu carrinho está vazio!</p>
   <% else %>
-    <div class="flex flex-row space-x-8">
+    <div class="flex flex-row space-x-8 mb-4">
       <!-- Lista de Produtos -->
       <div class="flex-grow">
         <ul class="w-full max-w-4xl">
           <% @cart_items.each do |item| %>
-            <li class="flex justify-between p-4 border-b">
+            <li class="flex justify-start p-4 border-b bg-[#D4D4D4] rounded-lg">
               <div>
-                <strong><%= item.product.name %></strong>
-                (<%= item.quantity %>)
+                <div>
+                  <%= image_tag item.product.image_url, alt: item.product.name, class: "w-[200px] h-[200px] object-contain p-2" %>
+                </div>
+
               </div>
-              <div>
-                R$: <%= item.product.price * item.quantity %>
+              <div class="flex flex-col justify-around max-w-xs overflow-auto">
+                <div>
+                  <strong><%= item.product.name %></strong>
+                  (<%= item.quantity %>)
+                </div>
+                <div class="pt-2 pb-2">
+                  <p><%= item.product.description %></p>
+                </div>
+                <div>
+                  R$: <%= number_to_currency(item.product.price * item.quantity, unit: "", separator: ",", delimiter: ".") %>
+                  <%= link_to cart_item_path(item), data: { turbo_method: :delete, turbo_confirm: 'Tem certeza que deseja remover este item?' } do %>
+                    <i class="fa fa-trash text-red-500 hover:text-red-700 cursor-pointer ml-2"></i>
+                  </div>
+                <% end %>
               </div>
 
             </li>
@@ -24,18 +38,18 @@
       </div>
 
       <!-- Resumo da Compra -->
-      <div class="flex flex-col bg-[#D4D4D4] justify-center items-center text-center rounded-lg w-96">
+      <div class="flex flex-col bg-[#D4D4D4] justify-center items-center text-center rounded-lg max-h-72 p-4">
         <p class="pt-5 pb-5 text-lg border-b border-[#929292] w-full">Resumo da Compra</p>
         <div class="flex flex-row justify-around w-full p-2">
           <p>Valor dos Produtos</p>
-          <p><%= @cart_items.sum { |item| item.product.price * item.quantity } %></p>
+          <p>R$: <%= number_to_currency(@cart_items.sum { |item| item.product.price * item.quantity }, unit: "", separator: ",", delimiter: ".") %></p>
         </div>
         <div class="flex flex-row justify-around w-full p-2">
           <p>Valor do Frete</p>
           <p>R$ 40,00</p>
         </div>
-        <div class="p-4">
-          <p>Total da Compra: R$: <%= @cart_items.sum { |item| item.product.price * item.quantity } + 40 %></p>
+        <div class="p-4 text-lg font-semibold">
+          <p>Total da Compra: R$: <%= number_to_currency(@cart_items.sum { |item| item.product.price * item.quantity } + 40, unit: "", separator: ",", delimiter: ".") %></p>
         </div>
       </div>
     </div>

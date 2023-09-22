@@ -22,7 +22,7 @@
               <div class="flex justify-center items-center text-center mb-2" style="max-width: 95%; height: 3.5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
                 <h3 class="text-lg font-semibold" title="<%= product.name %>"><%= product.name %></h3>
               </div>
-              <p class="text-gray-600 text-xl mt-2 text-center">R$: <%= product.price %></p>
+              <p class="text-gray-600 text-xl mt-2 text-center">R$: <%= number_to_currency(product.price, unit: "", separator: ",", delimiter: ".")  %></p>
             </div>
           </div>
         <% end %>

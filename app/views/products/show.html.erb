@@ -9,7 +9,7 @@
     <div class="w-1/2 p-8 gap-4 flex flex-col justify-center items-center">
       <h1 class="text-3xl mb-4"><%= @product.name %></h1>
       <p class="mb-4"><%= @product.description %></p>
-      <p class="text-xl text-gray-600">R$: <%= @product.price %></p>
+      <p class="text-xl text-gray-600">R$: <%= number_to_currency(@product.price, unit: "", separator: ",", delimiter: ".")  %></p>
       <%= form_for CartItem.new, url: cart_items_path do |f| %>
         <div>
           <%= f.label :quantity, "Quantidade:" %>

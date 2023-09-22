@@ -9,13 +9,13 @@
     </div>
 
     <div class="mb-6">
-      <%= f.label :password, class: "block text-sm font-bold mb-2" %>
-      <%= f.password_field :password, autocomplete: "current-password", class: "shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" %>
+      <%= f.label "Senha", for: "password", class: "block text-sm font-bold mb-2" %>
+      <%= f.password_field :password, id: "password", autocomplete: "current-password", class: "shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
 
     <div class="mb-6 flex flex-row">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me, class: "ml-2 block text-sm" %>
+      <%= f.check_box :remember_me, id: "remember_me_check" %>
+      <%= f.label "Lembrar-me", for: "remember_me_check", class: "ml-2 block text-sm" %>
     </div>
 
     <div>
