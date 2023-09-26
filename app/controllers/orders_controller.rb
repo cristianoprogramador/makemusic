@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
     @cart_items = current_cart.cart_items
 
     # Criar um novo pedido associado ao usuário atual
-    order = current_user.orders.new(status: "pending", total: calculate_total)
+    order = current_user.orders.new(status: "Preparando Envio", total: calculate_total)
 
     # Mover os itens do carrinho para o pedido
     @cart_items.each do |cart_item|

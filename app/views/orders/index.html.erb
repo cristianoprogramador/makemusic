@@ -1,21 +1,38 @@
-<h1 class="text-2xl font-bold mb-6">Seus Pedidos</h1>
+<div class="flex flex-col items-center justify-center bg-[#E1E1E1] flex-grow p-6">
+  <div class="flex flex-col w-full max-w-4xl">
 
-<% if @orders.present? %>
-  <% @orders.each do |order| %>
-    <div class="order-card bg-white shadow-lg rounded-md p-6 mb-4">
-      <h2 class="text-xl font-semibold mb-3">Pedido #<%= order.id %> - <span class="text-green-500"><%= order.status.capitalize %></span></h2>
-      <div class="mb-4">
-        <span class="font-medium">Total:</span> R$ <%= number_to_currency(order.total, unit: "", separator: ",", delimiter: ".") %>
-      </div>
-      <ul class="border-t pt-4">
-        <% order.order_items.each do |item| %>
-          <li class="mb-2">
-            <span class="font-medium"><%= item.product.name %></span> - <%= item.quantity %>x - R$ <%= number_to_currency(item.price * item.quantity, unit: "", separator: ",", delimiter: ".") %>
-          </li>
+    <h1 class="text-2xl font-bold mb-6 mt-6">Seus Pedidos</h1>
+
+    <% if @orders.present? %>
+      <div class="grid grid-cols-2 gap-4">
+        <% @orders.each do |order| %>
+          <div class="order-card bg-white shadow-lg rounded-md p-6 mb-4">
+            <h2 class="text-xl font-semibold mb-3 truncate">Pedido #<%= order.id %> - <span class="text-green-500"><%= order.status.capitalize %></span></h2>
+            <div class="mb-4">
+              <span class="font-medium">Total:</span> R$ <%= number_to_currency(order.total, unit: "", separator: ",", delimiter: ".") %>
+            </div>
+            <ul class="border-t pt-4">
+              <% order.order_items.each do |item| %>
+                <!-- Usando flex para dividir os elementos corretamente -->
+                <li class="mb-2 flex justify-between items-center">
+                  <!-- Container do nome do produto, para truncar -->
+                  <div class="flex-shrink w-3/5 truncate">
+                    <span class="font-medium"><%= item.product.name %></span>
+                  </div>
+                  <!-- Container para quantidade e preço, não truncados -->
+                  <div class="flex-shrink w-2/5 text-right">
+                    <%= item.quantity %>x - R$ <%= number_to_currency(item.price * item.quantity, unit: "", separator: ",", delimiter: ".") %>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-<% else %>
-  <p class="text-gray-600">Você não tem nenhum pedido ainda.</p>
-<% end %>
+      </div>
+
+    <% else %>
+      <p class="text-gray-600">Você não tem nenhum pedido ainda.</p>
+    <% end %>
+
+  </div>
+</div>

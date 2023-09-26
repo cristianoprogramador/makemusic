@@ -1,7 +1,35 @@
-<div class="flex flex-col items-center justify-center bg-[#E1E1E1] flex-grow">
-  <h1>Perfil do Usuário</h1>
-  <p><strong>Nome:</strong> <%= @user.name %></p>
-  <p><strong>Email:</strong> <%= @user.email %></p>
-  <p><strong>Avatar (url):</strong> <%= @user.avatar_url %></p>
+<div class="flex flex-col items-center justify-center bg-[#E1E1E1] flex-grow p-6">
+  <h1 class="text-2xl font-bold mb-6">Perfil do Usuário</h1>
+
+  <% if @user.avatar_url.present? %>
+    <img src="<%= @user.avatar_url %>" alt="Avatar do Usuário" class="w-32 h-32 rounded-full mb-6 shadow-lg">
+  <% else %>
+    <div class="w-32 h-32 rounded-full bg-gray-300 mb-6 flex items-center justify-center">
+      <span class="text-xl font-bold text-gray-600">Sem Avatar</span>
+    </div>
+  <% end %>
+
+  <div class="w-full max-w-md bg-white p-6 rounded shadow-md">
+    <%= form_with(model: @user, local: true) do |form| %>
+      <div class="mb-4">
+        <%= form.label :name, "Nome", class: "block text-sm font-medium text-gray-600 mb-2" %>
+        <%= form.text_field :name, class: "w-full p-2 border rounded" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :avatar_url, "Avatar (URL)", class: "block text-sm font-medium text-gray-600 mb-2" %>
+        <%= form.text_field :avatar_url, class: "w-full p-2 border rounded" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :email, "Email", class: "block text-sm font-medium text-gray-600 mb-2" %>
+        <%= form.text_field :email, value: @user.email, disabled: true, class: "w-full p-2 border rounded bg-gray-100 cursor-not-allowed" %>
+      </div>
+
+      <div class="flex justify-end">
+        <%= form.submit "Atualizar", class: "py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600" %>
+      </div>
+    <% end %>
+  </div>
 
 </div>

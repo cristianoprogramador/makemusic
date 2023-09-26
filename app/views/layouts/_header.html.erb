@@ -35,7 +35,8 @@
         <% if user_signed_in? %>
           <%= link_to user_profile_path do %>
             <div class="mr-4 cursor-pointer">
-              <img src="/icons/user_avatar.svg" alt="Avatar" class="w-9 h-9">
+              <% avatar = current_user.avatar_url.presence || "/icons/user_avatar.svg" %>
+              <img src="<%= avatar %>" alt="Avatar" class="w-9 h-9 rounded-full">
             </div>
           <% end %>
         <% end %>
