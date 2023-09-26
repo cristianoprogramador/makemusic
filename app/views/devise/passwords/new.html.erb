@@ -2,20 +2,30 @@
 
   <h2 class="mb-6 text-2xl text-center">Esqueceu sua senha?</h2>
 
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-
-    <div class="mb-4">
-      <%= f.label :email, class: "block text-sm font-bold mb-2" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" %>
-    </div>
+  <div class="bg-[#D4D4D4] shadow-sm flex rounded-lg flex-row p-8 items-center justify-center">
 
     <div>
-      <%= f.submit "Enviar instruções de redefinição de senha", class: "w-full bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <img src="/icons/forgotpass.png" alt="Logo" class="h-64 w-full p-3">
     </div>
-  <% end %>
 
-  <div class="mt-4 text-center">
-    <%= render "devise/shared/links" %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="flex flex-col gap-4">
+
+        <div class="mb-4">
+          <%= f.label :email, class: "block text-sm font-bold mb-2" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
+
+        <div>
+          <%= f.submit "Enviar instruções de redefinição de senha", class: "w-full bg-blue-500 hover:bg-blue-700 cursor-pointer text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        </div>
+      <% end %>
+
+      <div class="mt-4 text-center">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
   </div>
 </div>
