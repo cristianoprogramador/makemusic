@@ -59,6 +59,10 @@
         <div class="p-4 text-lg font-semibold">
           <p>Total da Compra: R$: <%= number_to_currency(@cart_items.sum { |item| item.product.price * item.quantity } + 40, unit: "", separator: ",", delimiter: ".") %></p>
         </div>
+        <div class="mt-4">
+          <%= button_to "Finalizar Compra", orders_path, method: :post, class: "bg-blue-600 hover:bg-blue-700 cursor-pointer text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300" %>
+        </div>
+
       </div>
     </div>
   <% end %>

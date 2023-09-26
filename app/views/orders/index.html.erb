@@ -1,0 +1,21 @@
+<h1 class="text-2xl font-bold mb-6">Seus Pedidos</h1>
+
+<% if @orders.present? %>
+  <% @orders.each do |order| %>
+    <div class="order-card bg-white shadow-lg rounded-md p-6 mb-4">
+      <h2 class="text-xl font-semibold mb-3">Pedido #<%= order.id %> - <span class="text-green-500"><%= order.status.capitalize %></span></h2>
+      <div class="mb-4">
+        <span class="font-medium">Total:</span> R$ <%= number_to_currency(order.total, unit: "", separator: ",", delimiter: ".") %>
+      </div>
+      <ul class="border-t pt-4">
+        <% order.order_items.each do |item| %>
+          <li class="mb-2">
+            <span class="font-medium"><%= item.product.name %></span> - <%= item.quantity %>x - R$ <%= number_to_currency(item.price * item.quantity, unit: "", separator: ",", delimiter: ".") %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% else %>
+  <p class="text-gray-600">Você não tem nenhum pedido ainda.</p>
+<% end %>

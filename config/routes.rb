@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
   resources :products, only: [:show]
+  resources :orders, only: [:index, :create]
 
   resources :carts, only: [:show]
   resources :cart_items, only: [:create, :update, :destroy] do

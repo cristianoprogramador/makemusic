@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
 
 
   def current_cart
-    current_or_guest_user.cart || current_or_guest_user.create_cart
+    current_or_guest_user.cart || current_or_guest_user.create_cart!
   end
 
   helper_method :current_cart
