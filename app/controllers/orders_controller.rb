@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-   @orders = current_user.orders
+    @orders = current_user.orders
   end
 
   private
@@ -37,5 +37,4 @@ class OrdersController < ApplicationController
     # Soma o total dos itens mais o frete
     @cart_items.sum { |item| item.product.price * item.quantity } + 40
   end
-
 end

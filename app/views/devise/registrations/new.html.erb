@@ -15,16 +15,27 @@
           <div class="mb-4">
             <%= f.label :name, "Nome", class: "block text-sm font-bold mb-2" %>
             <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" %>
+            <% if resource.errors[:name].any? %>
+              <p class="text-red-500 text-xs italic"><%= resource.errors[:name].first %></p>
+            <% end %>
+
           </div>
 
           <div class="mb-4">
             <%= f.label :email, class: "block text-sm font-bold mb-2" %>
             <%= f.email_field :email, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" %>
+            <% if resource.errors[:email].any? %>
+              <p class="text-red-500 text-xs italic"><%= resource.errors[:email].first %></p>
+            <% end %>
+
           </div>
 
           <div class="mb-4">
             <%= f.label :avatar_url, "URL do Avatar", class: "block text-sm font-bold mb-2" %>
             <%= f.text_field :avatar_url, autocomplete: "avatar-url", placeholder: "https://exemplo.com/seu-avatar.png", class: "shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" %>
+            <% if resource.errors[:avatar_url].any? %>
+              <p class="text-red-500 text-xs italic"><%= resource.errors[:avatar_url].first %></p>
+            <% end %>
           </div>
 
         </div>
@@ -33,11 +44,17 @@
           <div class="mb-4">
             <%= f.label :password, class: "block text-sm font-bold mb-2" %>
             <%= f.password_field :password, autocomplete: "new-password", class: "shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" %>
+            <% if resource.errors[:password].any? %>
+              <p class="text-red-500 text-xs italic"><%= resource.errors[:password].first %></p>
+            <% end %>
           </div>
 
           <div class="mb-4">
             <%= f.label :password_confirmation, "Confirmar senha", class: "block text-sm font-bold mb-2" %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" %>
+            <% if resource.errors[:password_confirmation].any? %>
+              <p class="text-red-500 text-xs italic"><%= resource.errors[:password_confirmation].first %></p>
+            <% end %>
           </div>
 
           <div>

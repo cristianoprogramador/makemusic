@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
         guest_user.destroy
         session[:guest_user_id] = nil
       end
-      return current_user
+      current_user
     else
       guest_user
     end
@@ -32,7 +32,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def create_guest_user
     user = User.create!(
       guest: true,
@@ -45,12 +44,9 @@ class ApplicationController < ActionController::Base
     user
   end
 
-
-
   def current_cart
     current_or_guest_user.cart || current_or_guest_user.create_cart!
   end
 
   helper_method :current_cart
-
 end

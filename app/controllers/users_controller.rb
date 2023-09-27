@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: 'Perfil atualizado com sucesso!'
+      redirect_to user_path(@user), notice: "Perfil atualizado com sucesso!"
     else
       render :show
     end

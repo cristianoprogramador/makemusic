@@ -1,10 +1,9 @@
 class HomeController < ApplicationController
-
   def index
-    if params[:category]
-      @products = Product.where(category: params[:category])
+    @products = if params[:category]
+      Product.where(category: params[:category])
     else
-      @products = Product.all
+      Product.all
     end
   end
 
@@ -12,5 +11,4 @@ class HomeController < ApplicationController
     @products = Product.where("name ILIKE ?", "%#{params[:query]}%")
     render :index
   end
-
 end

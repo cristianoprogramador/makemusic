@@ -22,8 +22,6 @@ class CartItemsController < ApplicationController
     end
   end
 
-
-
   def update
     @cart_item = CartItem.find(params[:id])
 
@@ -67,7 +65,6 @@ class CartItemsController < ApplicationController
     cart
   end
 
-
   def retrieve_cart_from_session
     cart = Cart.find_by(id: session[:cart_id])
 
@@ -78,7 +75,4 @@ class CartItemsController < ApplicationController
 
     cart
   end
-
-
-
 end
