@@ -27,11 +27,11 @@
                 <div class="flex flex-row justify-around items-center">
                   <div class="flex items-center">
                     <%= form_with url: decrement_cart_item_path(item), method: :post, class: "mr-2" do %>
-                      <button type="submit" class="bg-red-500 text-white rounded p-1"><i class="fa fa-minus"></i></button>
+                      <button type="submit" class="bg-red-500 hover:bg-red-700 text-white rounded p-1"><i class="fa fa-minus"></i></button>
                     <% end %>
                     <span class="mx-2"><%= item.quantity %></span>
                     <%= form_with url: increment_cart_item_path(item), method: :post, class: "ml-2" do %>
-                      <button type="submit" class="bg-green-500 text-white rounded p-1"><i class="fa fa-plus"></i></button>
+                      <button type="submit" class="bg-green-500 hover:bg-green-700 text-white rounded p-1"><i class="fa fa-plus"></i></button>
                     <% end %>
                   </div>
                   R$: <%= number_to_currency(item.product.price * item.quantity, unit: "", separator: ",", delimiter: ".") %>
