@@ -1,19 +1,18 @@
 databases:
-  - name: postgres
-    ipAllowList: []
+  - name: makemusic_production
     databaseName: makemusic_production
     user: makemusic
 
 services:
   - type: web
     name: makemusic
-    env: ruby
-    buildCommand: "./render-build.sh"
-    startCommand: "bundle exec rails s"
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: postgres
+          name: makemusic_production
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
